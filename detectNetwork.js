@@ -17,6 +17,10 @@ var detectNetwork = function(cardNumber) {
   	return "Diner's Club";
   }else if((cardNumber.substring(0,2) === '34' || cardNumber.substring(0,2) === '37') && cardNumber.length === 15){
   	return 'American Express';
+  }else if(cardNumber.charAt(0) === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)){
+  	return 'Visa';
+  }else if(cardNumber.length === 16 && (cardNumber.substring(0,2) === '51' || cardNumber.substring(0,2) === '52' || cardNumber.substring(0,2) === '53' || cardNumber.substring(0,2) === '54' || cardNumber.substring(0,2) === '55')){
+  	return 'MasterCard';
   }
 };
 
