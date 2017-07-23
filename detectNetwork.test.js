@@ -515,5 +515,26 @@ describe('should support China UnionPay', function(){
       expect(detectNetwork(cardNumStr)).to.equal('China UnionPay');
     })
   }
+  for(var i = 622126; i <= 622925; i++){
+    var cardNumStr = i.toString() + '12345678901';
+    var description = 'has a prefix of ' + cardNumStr + ' and a length of 17';
+    it(description, function(){
+      expect(detectNetwork(cardNumStr)).to.equal('China UnionPay');
+    })
+  }
+  for(var i = 622126; i <= 622925; i++){
+    var cardNumStr = i.toString() + '123456789012';
+    var description = 'has a prefix of ' + cardNumStr + ' and a length of 18';
+    it(description, function(){
+      expect(detectNetwork(cardNumStr)).to.equal('China UnionPay');
+    })
+  }
+  for(var i = 622126; i <= 622925; i++){
+    var cardNumStr = i.toString() + '1234567890123';
+    var description = 'has a prefix of ' + cardNumStr + ' and a length of 19';
+    it(description, function(){
+      expect(detectNetwork(cardNumStr)).to.equal('China UnionPay');
+    })
+  }
 })
 describe('should support Switch')
