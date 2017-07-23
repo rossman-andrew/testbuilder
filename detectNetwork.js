@@ -7,6 +7,25 @@
 //   1. The first few numbers (called the prefix)
 //   2. The number of digits in the number (called the length)
 
+function chinaUnion(cardNumber){
+	// China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+	var length = cardNumber.length;
+	var prefix1 = Number(cardNumber.slice(0,6));
+	var prefix2 = Number(cardNumber.slice(0,3));
+	var prefix3 = Number(cardNumber.slice(0,4));
+	if(length >= 16 && length <= 19){
+		if(prefix1 >= 622126 && prefix1 <= 622925){
+			return true;
+		}else if(prefix2 >= 624 && prefix2 <= 626){
+			return true;
+		}else if(prefix3 >= 6282 && prefix3 <= 6288){
+			return true;
+		}
+		return false;
+	}
+	return false;
+}
+
 var detectNetwork = function(cardNumber) {
   // Note: `cardNumber` will always be a string
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
@@ -25,6 +44,8 @@ var detectNetwork = function(cardNumber) {
   	return 'Discover';
   }else if(cardNumber.length >= 12 && cardNumber.length <= 19 && (cardNumber.substring(0,4) === '5018' || cardNumber.substring(0,4) === '5020' || cardNumber.substring(0,4) === '5038' || cardNumber.substring(0,4) === '6304')){
   	return 'Maestro';
+  }else if(chinaUnion(cardNumber)){
+  	return 'China UnionPay';
   }
 };
 
