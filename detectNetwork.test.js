@@ -344,5 +344,56 @@ describe('Maestro', function() {
   });
 });
 
-describe('should support China UnionPay')
+describe('should support China UnionPay', function(){
+  // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+  var expect = chai.expect;
+
+  it('has a prefix of 624 and a length of 16', function(){
+    expect(detectNetwork('6241234567890123')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 624 and a length of 17', function(){
+    expect(detectNetwork('62412345678901234')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 624 and a length of 18', function(){
+    expect(detectNetwork('624123456789012345')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 624 and a length of 19', function(){
+    expect(detectNetwork('6241234567890123456')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 625 and a length of 16', function(){
+    expect(detectNetwork('6251234567890123')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 625 and a length of 17', function(){
+    expect(detectNetwork('62512345678901234')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 625 and a length of 18', function(){
+    expect(detectNetwork('625123456789012345')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 625 and a length of 19', function(){
+    expect(detectNetwork('6251234567890123456')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 626 and a length of 16', function(){
+    expect(detectNetwork('6261234567890123')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 626 and a length of 17', function(){
+    expect(detectNetwork('62612345678901234')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 626 and a length of 18', function(){
+    expect(detectNetwork('626123456789012345')).to.equal('China UnionPay');
+  });
+
+  it('has a prefix of 626 and a length of 19', function(){
+    expect(detectNetwork('6261234567890123456')).to.equal('China UnionPay');
+  });
+})
 describe('should support Switch')
