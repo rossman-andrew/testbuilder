@@ -26,6 +26,25 @@ function chinaUnion(cardNumber){
 	return false;
 }
 
+/*
+Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
+Heads up! Switch and Visa seem to have some overlapping card numbers - in any apparent conflict, you should choose the network with the longer prefix.
+*/
+function switch(cardNumber){
+	var length = cardNumber.length;
+	var prefix1 = cardNumber.slice(0,4);
+	var prefix2 = cardNumber.slice(0,6);
+	if(length === 16 || length === 18 || length === 19){
+		if(prefix1 === '4903' || prefix1 === '4905' || prefix1 === '4911' || prefix1 === '4936' || prefix1 === '6333' || prefix1 === '6759'){
+			return true;
+		}else if(prefix2 === '564182' || prefix2 === '633110'){
+			return true;
+		}
+		return false;
+	}
+	return false;
+}
+
 var detectNetwork = function(cardNumber) {
   // Note: `cardNumber` will always be a string
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
@@ -36,7 +55,7 @@ var detectNetwork = function(cardNumber) {
   	return "Diner's Club";
   }else if((cardNumber.substring(0,2) === '34' || cardNumber.substring(0,2) === '37') && cardNumber.length === 15){
   	return 'American Express';
-  }else if(cardNumber.charAt(0) === '4' && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)){
+  }else if(cardNumber.charAt(0) === '4' && !switch(cardNumber) && (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19)){
   	return 'Visa';
   }else if(cardNumber.length === 16 && (cardNumber.substring(0,2) === '51' || cardNumber.substring(0,2) === '52' || cardNumber.substring(0,2) === '53' || cardNumber.substring(0,2) === '54' || cardNumber.substring(0,2) === '55')){
   	return 'MasterCard';
@@ -46,6 +65,8 @@ var detectNetwork = function(cardNumber) {
   	return 'Maestro';
   }else if(chinaUnion(cardNumber)){
   	return 'China UnionPay';
+  }else if(switch(cardNumber)){
+  	return 'Switch';
   }
 };
 
