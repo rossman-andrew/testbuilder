@@ -537,4 +537,55 @@ describe('should support China UnionPay', function(){
     })
   }
 })
-describe('should support Switch')
+describe('should support Switch', function(){
+  // Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
+  var expect = chai.expect;
+  
+  it('has a prefix of 4903 and a length of 16', function(){
+    expect(detectNetwork('4903123456789012')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4903 and a length of 18', function(){
+    expect(detectNetwork('490312345678901234')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4903 and a length of 19', function(){
+    expect(detectNetwork('4903123456789012345')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4905 and a length of 16', function(){
+    expect(detectNetwork('4905123456789012')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4905 and a length of 18', function(){
+    expect(detectNetwork('490512345678901234')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4905 and a length of 19', function(){
+    expect(detectNetwork('4905123456789012345')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4911 and a length of 16', function(){
+    expect(detectNetwork('4911123456789012')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4911 and a length of 18', function(){
+    expect(detectNetwork('491112345678901234')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4911 and a length of 19', function(){
+    expect(detectNetwork('4911123456789012345')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4936 and a length of 16', function(){
+    expect(detectNetwork('4936123456789012')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4936 and a length of 18', function(){
+    expect(detectNetwork('493612345678901234')).to.equal('Switch');
+  });
+
+  it('has a prefix of 4936 and a length of 19', function(){
+    expect(detectNetwork('4936123456789012345')).to.equal('Switch');
+  });
+})
